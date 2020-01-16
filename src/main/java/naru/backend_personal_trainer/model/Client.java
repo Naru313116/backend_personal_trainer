@@ -12,25 +12,26 @@ import javax.persistence.*;
 @Entity
 public class Client {
 
-    public Client(String firstName, String lastName, String email) {
+    public Client(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password=password;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
 
-    @OneToOne(cascade = {
+    @OneToOne(mappedBy = "client",cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,
             CascadeType.PERSIST,
             CascadeType.REFRESH})
-    @JoinColumn(name = "training_plan_id")
     private TrainingPlan trainingPlan;
 
 
@@ -40,7 +41,7 @@ public class Client {
     @Override
     public String toString() {
         return "Client{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

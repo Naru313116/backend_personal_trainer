@@ -1,6 +1,8 @@
+/*
 package naru.backend_personal_trainer.rest;
 
 
+import naru.backend_personal_trainer.dto.entities.ClientDto;
 import naru.backend_personal_trainer.model.Client;
 import naru.backend_personal_trainer.model.Trainer;
 import naru.backend_personal_trainer.model.Training;
@@ -37,7 +39,7 @@ public class AppRestController {
     }
     //test
     @GetMapping("/clients")
-    List<Client> getClientList(){
+    List<ClientDto> getClientList(){
         return clientService.findAll();
     }
 
@@ -56,7 +58,7 @@ public class AppRestController {
         Training tmpTraining = new Training("Meditation","Meditate for 2 min's");
         Training tmpTraining2 =  new Training("Pumps","do 20 pumps x3 with 2 min's break");
         TrainingPlan tmpTrainingPlan = new TrainingPlan("Maestro Arms");
-        Client tmpClient = new Client("Damian", "Tomasik", "żołdak@robak.com");
+        Client tmpClient = new Client("Damian", "Tomasik", "żołdak@robak.com","1234");
 
         tmpTrainingPlan.add(tmpTraining);
         tmpTrainingPlan.add(tmpTraining2);
@@ -66,7 +68,6 @@ public class AppRestController {
 
         trainingService.save(tmpTraining);
         trainingService.save(tmpTraining2);
-        clientService.save(tmpClient);
         trainerService.save(tmpTrainer);
         trainingPlanService.save(tmpTrainingPlan);
 
@@ -81,3 +82,4 @@ public class AppRestController {
         return trainingPlanService.findAll();
     }
 }
+*/

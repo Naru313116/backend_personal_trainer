@@ -31,12 +31,13 @@ public class TrainingPlan {
     @JoinColumn(name = "trainer_id")
     private Trainer trainer;
 
-    @OneToOne(mappedBy = "trainingPlan", cascade = {
+    @OneToOne( cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,
             CascadeType.PERSIST,
             CascadeType.REFRESH
     })
+    @JoinColumn(name = "client_id")
     private Client client;
 
     @OneToMany(mappedBy = "trainingPlan", cascade = {

@@ -1,7 +1,7 @@
 
 package naru.backend_personal_trainer.rest;
 
-import naru.backend_personal_trainer.model.Client;
+import naru.backend_personal_trainer.dto.entities.ClientDto;
 import naru.backend_personal_trainer.service.client.ClientService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,35 +19,35 @@ public class ClientRestController {
     }
 
     @GetMapping("/clients")
-    public List<Client> getList() {
+    public List<ClientDto> getList() {
         return clientService.findAll();
     }
 
     @GetMapping("/clients/{clientId}")
-    public Client getById(@PathVariable int clientId) {
+    public ClientDto getById(@PathVariable int clientId) {
 
-        Client client = clientService.getById(clientId);
-        if (client == null) {
+        ClientDto client = clientService.getById(clientId);
+        if (client.getId() == 0) {
             throw new RuntimeException("cannot find Employee with id = " + clientId);
         }
         return client;
     }
 
     @PostMapping("/clients")
-    public Client saveClient(@RequestBody Client client) {
-        clientService.save(client);
-        return client;
+    public ClientDto saveClient(@RequestBody ClientDto clientDto) {
+        clientService.save(clientDto);
+        return clientDto;
     }
 
     @PutMapping("/clients")
-    public Client updateClient(@RequestBody Client client) {
-        clientService.save(client);
-        return client;
+    public ClientDto updateClient(@RequestBody ClientDto clientDto) {
+        clientService.save(clientDto);
+        return clientDto;
     }
 
     @DeleteMapping("/clients/{clientId}")
     public String deleteEmployee(@PathVariable int clientId){
-        Client client = clientService.getById(clientId);
+        ClientDto client = clientService.getById(clientId);
         if(client == null){
             throw new RuntimeException("cannot find employee with id: " + clientId);
         }

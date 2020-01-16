@@ -1,15 +1,15 @@
 package naru.backend_personal_trainer.service.client;
 
-import naru.backend_personal_trainer.model.Client;
+import naru.backend_personal_trainer.dto.entities.ClientDto;
 
 import java.util.List;
 
 
 public interface ClientService {
 
-   List<Client> findAll();
-   Client getById(int clientId);
-   void save(Client client);
+   List<ClientDto> findAll();
+   ClientDto getById(int clientId);
+   void save(ClientDto clientDto);
    void delete(int clientId);
 
 }
