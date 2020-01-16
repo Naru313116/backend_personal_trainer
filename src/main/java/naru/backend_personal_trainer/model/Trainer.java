@@ -15,10 +15,11 @@ import java.util.List;
 @Table
 public class Trainer {
 
-    public Trainer(String firstName, String lastName, String specialization) {
+    public Trainer(String firstName, String lastName, String specialization, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.specialization = specialization;
+        this.password = password;
     }
 
     @Id
@@ -27,7 +28,7 @@ public class Trainer {
     private String firstName;
     private String lastName;
     private String specialization;
-
+    private String password;
 
     @OneToMany(mappedBy = "trainer", cascade = {
             CascadeType.DETACH,

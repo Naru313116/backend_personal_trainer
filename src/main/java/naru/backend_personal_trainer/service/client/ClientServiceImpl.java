@@ -1,7 +1,9 @@
 package naru.backend_personal_trainer.service.client;
 
 import naru.backend_personal_trainer.dto.entities.ClientDto;
+import naru.backend_personal_trainer.dto.entities.ClientRegistrationDto;
 import naru.backend_personal_trainer.dto.mapper.ClientMapper;
+import naru.backend_personal_trainer.dto.mapper.ClientRegistrationMapper;
 import naru.backend_personal_trainer.model.Client;
 import naru.backend_personal_trainer.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,12 @@ public class ClientServiceImpl implements ClientService {
 
     private ClientRepository clientRepository;
     private ClientMapper clientMapper;
-
+    private ClientRegistrationMapper clientRegistrationMapper;
     @Autowired
-    ClientServiceImpl(ClientRepository clientRepository, ClientMapper clientMapper) {
+    ClientServiceImpl(ClientRepository clientRepository, ClientMapper clientMapper,ClientRegistrationMapper clientRegistrationMapper) {
         this.clientRepository = clientRepository;
         this.clientMapper=clientMapper;
+        this.clientRegistrationMapper = clientRegistrationMapper;
     }
 
 
@@ -29,6 +32,11 @@ public class ClientServiceImpl implements ClientService {
         //.stream().map(client -> clientmapper.clienttoclientdto(client)).collect(Collectors.toList()
     }
 
+    @Override
+    public ClientRegistrationDto getByIdToEdit(int clientId) {
+        Client client = clientRepository.findById(clientId).orElse(new Client());
+        return clientRegistrationMapper.clientToClientRegistrationDto(client);
+    }
     @Override
     public ClientDto getById(int clientId) {
 

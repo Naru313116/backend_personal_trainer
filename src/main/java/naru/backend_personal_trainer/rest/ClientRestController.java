@@ -2,6 +2,7 @@
 package naru.backend_personal_trainer.rest;
 
 import naru.backend_personal_trainer.dto.entities.ClientDto;
+import naru.backend_personal_trainer.dto.entities.ClientRegistrationDto;
 import naru.backend_personal_trainer.model.Client;
 import naru.backend_personal_trainer.service.client.ClientService;
 import org.springframework.web.bind.annotation.*;
@@ -34,12 +35,23 @@ public class ClientRestController {
         return client;
     }
 
+    @GetMapping("/edit_client/{clientId}")
+    public ClientRegistrationDto getByIdToEdit(@PathVariable int clientId) {
+
+        ClientRegistrationDto client = clientService.getByIdToEdit(clientId);
+        if (client.getId() == 0) {
+            throw new RuntimeException("cannot find Employee with id = " + clientId);
+        }
+        return client;
+    }
+
+//TODO zmienić na registration
     @PostMapping("/clients")
     public ClientDto saveClient(@RequestBody ClientDto clientDto) {
         clientService.save(clientDto);
         return clientDto;
     }
-
+//TODO update ma robić na dtoRegistration chyba a nie na dto
     @PutMapping("/clients/{clientId}")
     public ClientDto updateClient(@RequestBody ClientDto clientDto, @PathVariable int clientId) {
         ClientDto tmpClientDto = clientService.getById(clientId);
@@ -52,7 +64,7 @@ public class ClientRestController {
         tmpClientDto.setEmail(clientDto.getEmail());
         tmpClientDto.setFirstName(clientDto.getFirstName());
         tmpClientDto.setLastName(clientDto.getLastName());
-        tmpClientDto.setPassword(clientDto.getPassword());
+       // tmpClientDto.setPassword(clientDto.getPassword());
 
         clientService.save(tmpClientDto);
         return tmpClientDto;
