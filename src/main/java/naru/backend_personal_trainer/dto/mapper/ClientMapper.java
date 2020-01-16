@@ -5,6 +5,7 @@ import naru.backend_personal_trainer.model.Client;
 import naru.backend_personal_trainer.repository.TrainingPlanRepository;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses =  TrainingPlanRepository.class, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface ClientMapper {
@@ -12,7 +13,7 @@ public interface ClientMapper {
 
     ClientDto clientToClientDto(Client client);
 
-
+    @Mapping(ignore = true, target = "trainingPlan")
     Client clientDtoToClient(ClientDto clientDto);
 
 

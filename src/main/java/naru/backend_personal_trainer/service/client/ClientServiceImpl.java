@@ -39,7 +39,6 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public void save(ClientDto clientDto) {
         Client client = clientMapper.clientDtoToClient(clientDto);
-        client.setTrainingPlan(null);
         clientRepository.save(client);
     }
 
