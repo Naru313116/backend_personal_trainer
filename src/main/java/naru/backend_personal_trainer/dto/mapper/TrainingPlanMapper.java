@@ -10,21 +10,25 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {TrainerRepository.class, ClientRepository.class}, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(componentModel = "spring", uses = {
+        TrainerRepository.class,
+        ClientRepository.class,
+        TrainingMapper.class}, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 
 public interface TrainingPlanMapper {
-        @Mapping(source = "trainer.id", target = "trainerId")
-        @Mapping(source = "client.id", target = "clientId")
-        TrainingPlanDto trainingPlanToTrainingPlanDto(TrainingPlan trainingPlan);
+    @Mapping(source = "trainer.id", target = "trainerId")
+    @Mapping(source = "client.id", target = "clientId")
+    @Mapping(source = "trainings", target = "trainingsDto")
+    TrainingPlanDto trainingPlanToTrainingPlanDto(TrainingPlan trainingPlan);
 
 
     @Mapping(source = "trainerId", target = "trainer.id")
     @Mapping(source = "clientId", target = "client.id")
-    @Mapping(ignore = true, target = "trainings")
+    @Mapping(source = "trainingsDto", target = "trainings")
     TrainingPlan trainingPlanDtoToTrainingPlan(TrainingPlanDto trainingPlanDto);
 
 
-    List<TrainingPlanDto> trainingPlanToTrainingPlansDto(List<TrainingPlan> trainingPlans);
+    List<TrainingPlanDto> trainingPlansToTrainingPlansDto(List<TrainingPlan> trainingPlans);
 
-    List<TrainingPlan> trainingPlansDtoToTrainingPlan(List<TrainingPlanDto> trainingPlansDto);
+    List<TrainingPlan> trainingPlansDtoToTrainingPlans(List<TrainingPlanDto> trainingPlansDto);
 }

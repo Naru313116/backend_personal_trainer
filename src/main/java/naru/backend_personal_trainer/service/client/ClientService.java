@@ -12,6 +12,7 @@ public interface ClientService {
    ClientRegistrationDto getByIdToEdit(int clientId);
    ClientDto getById(int clientId);
    void save(ClientDto clientDto);
+   void save(ClientRegistrationDto clientDto);
    void delete(int clientId);
-
+   void updateClient(String oldPassword, String newPassword, ClientDto clientDtoFromDataBase, ClientDto clientDtoToSave);
 }

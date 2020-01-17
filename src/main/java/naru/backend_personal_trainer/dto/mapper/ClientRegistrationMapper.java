@@ -1,6 +1,5 @@
 package naru.backend_personal_trainer.dto.mapper;
 
-import naru.backend_personal_trainer.dto.entities.ClientDto;
 import naru.backend_personal_trainer.dto.entities.ClientRegistrationDto;
 import naru.backend_personal_trainer.model.Client;
 import naru.backend_personal_trainer.repository.TrainingPlanRepository;

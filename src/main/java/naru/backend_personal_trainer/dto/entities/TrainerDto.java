@@ -1,10 +1,8 @@
 package naru.backend_personal_trainer.dto.entities;
 
 import lombok.Data;
-import naru.backend_personal_trainer.model.TrainingPlan;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 public class TrainerDto {

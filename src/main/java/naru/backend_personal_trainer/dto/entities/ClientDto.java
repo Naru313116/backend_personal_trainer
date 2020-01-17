@@ -1,12 +1,9 @@
 package naru.backend_personal_trainer.dto.entities;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter @Setter
-@NoArgsConstructor
+@Data
 public class ClientDto {
     private int id;
     private String firstName;

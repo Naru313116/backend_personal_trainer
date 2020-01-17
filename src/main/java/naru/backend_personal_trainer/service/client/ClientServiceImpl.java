@@ -28,8 +28,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<ClientDto> findAll() {
-        return clientRepository.findAll().stream().map( client -> clientMapper.clientToClientDto(client)).collect(Collectors.toList());
-        //.stream().map(client -> clientmapper.clienttoclientdto(client)).collect(Collectors.toList()
+        return clientRepository.findAll().stream().map(clientMapper::clientToClientDto).collect(Collectors.toList());
     }
 
     @Override
@@ -51,7 +50,28 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public void save(ClientRegistrationDto clientDto) {
+        Client client = clientRegistrationMapper.clientRegistrationDtoToClient(clientDto);
+        clientRepository.save(client);
+    }
+
+    @Override
     public void delete(int clientId) {
         clientRepository.deleteById(clientId);
     }
+
+    @Override
+    public void updateClient(String oldPassword, String newPassword, ClientDto clientDtoFromDataBase, ClientDto clientDtoToSave) {
+        Client client = clientMapper.clientDtoToClient(clientDtoFromDataBase);
+        Client clientToUpdate = clientMapper.clientDtoToClient(clientDtoToSave);
+        if(client.getPassword().equals(oldPassword)){
+            client.setPassword(newPassword);
+            client.setEmail(clientToUpdate.getEmail());
+            client.setFirstName(clientToUpdate.getFirstName());
+            client.setLastName(clientToUpdate.getLastName());
+        }else throw new RuntimeException("wrong password!");
+        clientRepository.save(client);
+    }
+
+
 }
