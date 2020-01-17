@@ -4,6 +4,7 @@ import lombok.Data;
 import naru.backend_personal_trainer.model.TrainingPlan;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 public class TrainerDto {
@@ -12,6 +13,6 @@ public class TrainerDto {
     private String firstName;
     private String lastName;
     private String specialization;
-    private List<TrainingPlan> trainingPlans;
+    private List<TrainingPlanDto> trainingPlansDto;
 
 }

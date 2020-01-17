@@ -11,9 +11,9 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring",uses =  TrainingPlanRepository.class, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface TrainerRegistrationMapper {
 
-    TrainerDto trainerToTrainerDto(Trainer trainer);
+    TrainerRegistrationDto trainerToTrainerRegistrationDto(Trainer trainer);
 
     @Mapping(ignore = true, target = "trainingPlans")
-    Trainer trainerDtoToTrainer(TrainerRegistrationDto trainerDto);
+    Trainer trainerRegistrationDtoToTrainer(TrainerRegistrationDto trainerDto);
 
 }
